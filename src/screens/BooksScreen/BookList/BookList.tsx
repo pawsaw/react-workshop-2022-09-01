@@ -1,7 +1,7 @@
 import React from 'react';
-import { Book } from '../../domain/books';
-import { useCounter } from '../../domain/counter';
-import { noop } from '../../utils/noop';
+import { Book } from '../../../domain/books';
+import { useCounter } from '../../../domain/counter';
+import { noop } from '../../../utils/noop';
 import { BookListItem } from './BookListItem/BookListItem';
 import { OnBookSelected } from './OnBookSelected';
 

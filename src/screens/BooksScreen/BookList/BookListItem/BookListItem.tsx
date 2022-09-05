@@ -1,7 +1,7 @@
 import React from 'react';
-import { Book } from '../../../domain/books';
-import { useCounter } from '../../../domain/counter';
-import { useTheme } from '../../../domain/theme';
+import { Book } from '../../../../domain/books';
+import { useCounter } from '../../../../domain/counter';
+import { useTheme } from '../../../../domain/theme';
 import { OnBookSelected } from '../OnBookSelected';
 
 export interface BookListItemProps {
