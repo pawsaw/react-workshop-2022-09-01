@@ -11,11 +11,8 @@ export interface BookListProps {
 }
 
 export const BookList: React.FC<BookListProps> = ({ books, onBookSelected = noop }) => {
-  const { count, increment } = useCounter();
-
   return (
     <div>
-      <button onClick={increment}>Increment counter: {count}</button>
       {books.map((book) => (
         <BookListItem book={book} key={book.title} onBookSelected={onBookSelected} />
       ))}
