@@ -1,31 +1,41 @@
 import React from 'react';
-import { noop } from '../../utils/noop';
+import { useDispatch, useSelector } from 'react-redux';
+import { decrementCounter, incrementCounter } from '../../domain/counter/store';
+import { State } from '../../store';
 
-export interface OnCounterValueChanged {
-  (newValue: number): void;
-}
+// export interface OnCounterValueChanged {
+//   (newValue: number): void;
+// }
 
-export interface CounterProps {
-  value?: number;
-  onValueChanged?: OnCounterValueChanged;
-}
+// export interface CounterProps {
+//   value?: number;
+//   onValueChanged?: OnCounterValueChanged;
+// }
 
-export const Counter: React.FC<CounterProps> = ({ value = 100, onValueChanged = noop }) => {
+export const Counter: React.FC = () => {
+  const count = useSelector<State, number>((state) => state.counter.count);
+  const dispatch = useDispatch();
+
   const increment = () => {
-    const newCount = value + 1;
-    console.log({ newCount });
-    onValueChanged(newCount);
+    dispatch(
+      incrementCounter({
+        increment: 1,
+      }),
+    );
   };
 
   const decrement = () => {
-    const newCount = value - 1;
-    onValueChanged(newCount);
+    dispatch(
+      decrementCounter({
+        decrement: 2,
+      }),
+    );
   };
 
   return (
     <div>
       <button onClick={decrement}>-</button>
-      {value}
+      {count}
       <button onClick={increment}>+</button>
     </div>
   );
