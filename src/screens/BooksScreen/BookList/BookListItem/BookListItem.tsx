@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Book } from '../../../../domain/books';
 import { useCounter } from '../../../../domain/counter';
 import { useTheme } from '../../../../domain/theme';
@@ -20,7 +21,7 @@ export const BookListItem: React.FC<BookListItemProps> = ({ book, onBookSelected
         }}
         onClick={() => onBookSelected(book)}
       >
-        {book.title}
+        {book.title} - <Link to={`/books/${book.isbn}`}>details</Link>
       </span>
     </div>
   );

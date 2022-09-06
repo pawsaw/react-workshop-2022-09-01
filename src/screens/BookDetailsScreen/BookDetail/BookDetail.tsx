@@ -1,5 +1,5 @@
 import React from 'react';
-import { Book } from '../../domain/books';
+import { Book } from '../../../domain/books';
 
 export interface BookDetailProps {
   book: Book;
