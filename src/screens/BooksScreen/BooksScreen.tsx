@@ -1,12 +1,13 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useBooks } from '../../domain/books';
-import { OnBookSelected, BookList } from './BookList';
+import { BookList } from './BookList';
+import { OnBookSelected } from './OnBookSelected';
 
-export const BooksScreen: React.FC = () => {
-  const onBookSelected: OnBookSelected = useCallback((book) => {
-    alert(book.price);
-  }, []);
+export interface BooksScreenProps {
+  onBookSelected: OnBookSelected;
+}
 
+export const BooksScreen: React.FC<BooksScreenProps> = ({ onBookSelected }) => {
   const { books } = useBooks();
 
   return (

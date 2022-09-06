@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Book } from '../../../../domain/books';
 import { useCounter } from '../../../../domain/counter';
 import { useTheme } from '../../../../domain/theme';
-import { OnBookSelected } from '../OnBookSelected';
+import { OnBookSelected } from '../../OnBookSelected';
 
 export interface BookListItemProps {
   book: Book;
@@ -19,9 +19,17 @@ export const BookListItem: React.FC<BookListItemProps> = ({ book, onBookSelected
         style={{
           color: primaryColor,
         }}
-        onClick={() => onBookSelected(book)}
       >
-        {book.title} - <Link to={`/books/${book.isbn}`}>details</Link>
+        {book.title} -{' '}
+        <span
+          style={{
+            color: 'blue',
+            textDecoration: 'underline',
+          }}
+          onClick={() => onBookSelected(book)}
+        >
+          details
+        </span>
       </span>
     </div>
   );
