@@ -1,5 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { store } from '../../store';
 import { Book } from './Book';
 import { loadBook, selectBookByIsbn } from './store';
 
@@ -9,10 +10,9 @@ export interface UseBookResult {
 
 export const useBook = (isbn: string): UseBookResult => {
   const book = useSelector(selectBookByIsbn(isbn));
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<typeof store.dispatch>();
 
-  // @ts-ignore
-  const fetchBook = useCallback((isbn) => dispatch(loadBook(isbn)), [dispatch]);
+  const fetchBook = useCallback((isbn: string) => dispatch(loadBook(isbn)), [dispatch]);
 
   useEffect(() => {
     if (book === null) {
