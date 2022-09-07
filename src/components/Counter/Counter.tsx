@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrementCounter, incrementCounter } from '../../domain/counter/store';
+import { decrementCounter, incrementCounter, selectCount } from '../../domain/counter/store';
 import { State } from '../../store';
 
 // export interface OnCounterValueChanged {
@@ -13,7 +13,7 @@ import { State } from '../../store';
 // }
 
 export const Counter: React.FC = () => {
-  const count = useSelector<State, number>((state) => state.counter.count);
+  const count = useSelector<State, number>(selectCount);
   const dispatch = useDispatch();
 
   const increment = () => {

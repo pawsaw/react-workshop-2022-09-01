@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Book } from './Book';
+import { selectAllBooks, setBooks } from './store';
 
 export interface UseBooksResult {
   books: Book[] | null;
@@ -7,16 +9,21 @@ export interface UseBooksResult {
 }
 
 export const useBooks = (): UseBooksResult => {
-  const [books, setBooks] = useState<Book[] | null>(null);
-  const reload = async () => {
+  const books = useSelector(selectAllBooks);
+  const dispatch = useDispatch();
+
+  const reload = useCallback(async () => {
     const response = await fetch(`http://localhost:4730/books`);
     const _books = await response.json();
-    setBooks(_books);
-  };
+    // dispatch
+    dispatch(setBooks(_books));
+  }, [dispatch]);
 
   useEffect(() => {
-    reload();
-  }, []);
+    if (books === null) {
+      reload();
+    }
+  }, [books, reload]);
 
   return {
     books,

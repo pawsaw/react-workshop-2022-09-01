@@ -16,7 +16,7 @@ export type CounterDecrementAction = PayloadAction<{
   decrement: number;
 }>;
 
-const counterSlice = createSlice({
+export const counterSlice = createSlice({
   name: 'counter',
   initialState: initialCounterState,
   reducers: {
@@ -36,4 +36,3 @@ const counterSlice = createSlice({
 });
 
 export const counterReducer = counterSlice.reducer;
-export const { incrementCounter, decrementCounter } = counterSlice.actions;
