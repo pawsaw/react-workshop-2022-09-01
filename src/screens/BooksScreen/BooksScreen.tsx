@@ -1,5 +1,6 @@
-import React from 'react';
-import { useBooks } from '../../domain/books';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadBooks, selectAllBooks } from '../../domain/books/store';
 import { BookList } from './BookList';
 import { OnBookSelected } from './OnBookSelected';
 
@@ -8,7 +9,13 @@ export interface BooksScreenProps {
 }
 
 export const BooksScreen: React.FC<BooksScreenProps> = ({ onBookSelected }) => {
-  const { books } = useBooks();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // @ts-ignore
+    dispatch(loadBooks());
+  }, [dispatch]);
+  const books = useSelector(selectAllBooks);
 
   return (
     <div>
